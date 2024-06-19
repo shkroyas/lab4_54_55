@@ -18,17 +18,14 @@ void InsertionSort(int a[], int size) {
     }
 }
 
-void GenerateRandomArray(int arr[], int size) {
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dis(0, 999);
+void GenerateReverseArray(int arr[], int size) {
     for (int i = 0; i < size; i++) {
-        arr[i] = dis(gen);
+        arr[i] = size - i - 1;
     }
 }
 
 int main() {
-    ofstream outfile("insertion_sort_times.csv");
+    ofstream outfile("insertion_sort_times_2.csv");
     outfile << "Input Size,Insertion Sort Time (microseconds)\n";
     
     const int startSize = 5000;
@@ -45,7 +42,7 @@ int main() {
         int size = sizes[i];
         int* arr = new int[size];
         
-        GenerateRandomArray(arr, size);
+        GenerateReverseArray(arr, size);
         
         auto start = high_resolution_clock::now();
         InsertionSort(arr, size);
